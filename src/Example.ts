@@ -20,6 +20,7 @@ export class Example extends SmartContract {
 
   @method simpledeposit(user: PublicKey) {
     const payerUpdate = AccountUpdate.createSigned(user);
-    payerUpdate.send({ to: this.address, amount: UInt64.from(1000000) });
+    const recipientUpdate = AccountUpdate.create(this.address);
+    payerUpdate.send({ to: recipientUpdate, amount: UInt64.from(1000000) });
   }
 }
